@@ -1,0 +1,950 @@
+{
+  "last_node_id": 55,
+  "last_link_id": 56,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -870,
+        120
+      ],
+      "size": {
+        "0": 300,
+        "1": 100
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            3,
+            5
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "title": "BASE模型",
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -550,
+        120
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 53,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "daytime sky nature dark blue galaxy bottle"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        -870,
+        360
+      ],
+      "size": {
+        "0": 300,
+        "1": 110
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            27
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "图像尺寸+批次",
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 55,
+      "type": "TranslateTextNode",
+      "pos": [
+        -870,
+        680
+      ],
+      "size": {
+        "0": 300,
+        "1": 140
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            54,
+            55
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "负向提示词-支持中文输入",
+      "properties": {
+        "Node name for S&R": "TranslateTextNode"
+      },
+      "widgets_values": [
+        "auto",
+        "en",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 12,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -870,
+        980
+      ],
+      "size": {
+        "0": 300,
+        "1": 100
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            14
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            19,
+            20
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "title": "REFINER模型",
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_refiner_1.0.safetensors"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -550,
+        160
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 54,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "text, watermark"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 54,
+      "type": "TranslateTextNode",
+      "pos": [
+        -870,
+        510
+      ],
+      "size": {
+        "0": 295.87689208984375,
+        "1": 130.1434326171875
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            52,
+            53
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "正向提示词-支持中文输入",
+      "properties": {
+        "Node name for S&R": "TranslateTextNode"
+      },
+      "widgets_values": [
+        "auto",
+        "en",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 10,
+      "type": "KSamplerAdvanced",
+      "pos": [
+        -550,
+        200
+      ],
+      "size": {
+        "0": 270,
+        "1": 330
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 12
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 27
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 47,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          },
+          "slot_index": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "KSampler (Advanced) - BASE",
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced"
+      },
+      "widgets_values": [
+        "enable",
+        6767725640732,
+        "randomize",
+        40,
+        8,
+        "euler",
+        "normal",
+        0,
+        30,
+        "enable"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 15,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -550,
+        570
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 19
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 52,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          },
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            23
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "daytime scenery  sky nature dark blue bottle with a galaxy stars milky way in it"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 16,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -550,
+        610
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 20
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 55,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          },
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "text, watermark"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 11,
+      "type": "KSamplerAdvanced",
+      "pos": [
+        -550,
+        650
+      ],
+      "size": {
+        "0": 270,
+        "1": 320
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 14,
+          "slot_index": 0
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 13
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 50,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          },
+          "slot_index": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            25
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "KSampler (Advanced) - REFINER",
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced"
+      },
+      "widgets_values": [
+        "disable",
+        0,
+        "fixed",
+        40,
+        8,
+        "euler",
+        "normal",
+        30,
+        10000,
+        "disable"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 53,
+      "type": "PreviewImage",
+      "pos": [
+        -260,
+        160
+      ],
+      "size": {
+        "0": 750,
+        "1": 810
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 51,
+          "slot_index": 0
+        }
+      ],
+      "title": "图像预览（右键可保存）",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 52,
+      "type": "PrimitiveNode",
+      "pos": [
+        -870,
+        860
+      ],
+      "size": [
+        300,
+        80
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            47,
+            50
+          ],
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        }
+      ],
+      "title": "种子",
+      "properties": {},
+      "widgets_values": [
+        6767725640732,
+        "fixed"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 51,
+      "type": "VAELoader",
+      "pos": [
+        -870,
+        260
+      ],
+      "size": {
+        "0": 300,
+        "1": 60
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            56
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "sdxl_vae.vae.safetensors"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 17,
+      "type": "VAEDecode",
+      "pos": [
+        -260,
+        120
+      ],
+      "size": {
+        "0": 200,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            51
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#332922",
+      "bgcolor": "#593930"
+    }
+  ],
+  "links": [
+    [
+      3,
+      4,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      4,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      10,
+      4,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      6,
+      0,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      7,
+      0,
+      10,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      10,
+      0,
+      11,
+      3,
+      "LATENT"
+    ],
+    [
+      14,
+      12,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      19,
+      12,
+      1,
+      15,
+      0,
+      "CLIP"
+    ],
+    [
+      20,
+      12,
+      1,
+      16,
+      0,
+      "CLIP"
+    ],
+    [
+      23,
+      15,
+      0,
+      11,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      16,
+      0,
+      11,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      11,
+      0,
+      17,
+      0,
+      "LATENT"
+    ],
+    [
+      27,
+      5,
+      0,
+      10,
+      3,
+      "LATENT"
+    ],
+    [
+      47,
+      52,
+      0,
+      10,
+      4,
+      "INT"
+    ],
+    [
+      50,
+      52,
+      0,
+      11,
+      4,
+      "INT"
+    ],
+    [
+      51,
+      17,
+      0,
+      53,
+      0,
+      "IMAGE"
+    ],
+    [
+      52,
+      54,
+      0,
+      15,
+      1,
+      "STRING"
+    ],
+    [
+      53,
+      54,
+      0,
+      6,
+      1,
+      "STRING"
+    ],
+    [
+      54,
+      55,
+      0,
+      7,
+      1,
+      "STRING"
+    ],
+    [
+      55,
+      55,
+      0,
+      16,
+      1,
+      "STRING"
+    ],
+    [
+      56,
+      51,
+      0,
+      17,
+      1,
+      "VAE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "SDXL标准工作流-简化多语言版",
+      "bounding": [
+        -889,
+        34,
+        1405,
+        1062
+      ],
+      "color": "#A88"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
