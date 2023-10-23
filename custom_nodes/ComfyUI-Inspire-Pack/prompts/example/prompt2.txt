@@ -1,0 +1,12 @@
+positive:1girl is walking through street,
+raincoat, yellow umbrella
+
+negative:text, watermark
+-----------------
+positive:museum, people are looking paintings, abstract
+
+negative:text, watermark
+---- 
+positive:battle ground of space ships
+
+negative:text, watermark
